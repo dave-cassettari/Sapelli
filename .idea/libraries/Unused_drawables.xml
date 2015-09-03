@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Unused drawables">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/dots-vertical.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/folder-outline.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/cloud-download.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_play_arrow_black_48dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_play_arrow_white_48dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_archive_black_36dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_play_arrow_black_36dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/export.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_swap_horiz_white_36dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/ic_save_black_36dp.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/import.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/qrcode.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/information-outline.zip!/" />
+      <root url="jar://$PROJECT_DIR$/UI Design/Unused drawables/content-save.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

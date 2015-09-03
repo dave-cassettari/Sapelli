@@ -61,7 +61,6 @@ public final class SingletonQueue<E> implements Queue<E>
 	{
 		return new Iterator<E>()
 		{
-
 			private boolean atEnd = false;
 			
 			@Override
@@ -77,6 +76,11 @@ public final class SingletonQueue<E> implements Queue<E>
 					throw new NoSuchElementException();
 				atEnd = true;
 				return e;
+			}
+
+			@Override
+			public void remove() {
+
 			}
 		};
 	}

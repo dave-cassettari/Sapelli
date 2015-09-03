@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CollectorAndroid/CollectorAndroid.iml" filepath="$PROJECT_DIR$/CollectorAndroid/CollectorAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CollectorCmdLn/CollectorCmdLn.iml" filepath="$PROJECT_DIR$/CollectorCmdLn/CollectorCmdLn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library+DB4O/Library+DB4O.iml" filepath="$PROJECT_DIR$/Library+DB4O/Library+DB4O.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library+SQLite4Java/Library+SQLite4Java.iml" filepath="$PROJECT_DIR$/Library+SQLite4Java/Library+SQLite4Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SMSRelay/SMSRelay.iml" filepath="$PROJECT_DIR$/SMSRelay/SMSRelay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" filepath="$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/commons-codec-shaded/commons-codec-shaded.iml" filepath="$PROJECT_DIR$/Dependencies/commons-codec-shaded/commons-codec-shaded.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryAndroid/target/generated-sources/generated-sources.iml" filepath="$PROJECT_DIR$/LibraryAndroid/target/generated-sources/generated-sources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CollectorAndroid/target/generated-sources/generated-sources1.iml" filepath="$PROJECT_DIR$/CollectorAndroid/target/generated-sources/generated-sources1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" filepath="$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sapelli.iml" filepath="$PROJECT_DIR$/sapelli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryAndroid/sapelli-library-android.iml" filepath="$PROJECT_DIR$/LibraryAndroid/sapelli-library-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/~apklib-com.ipaulpro_afilechooser-library_2.4.iml" filepath="$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/~apklib-com.ipaulpro_afilechooser-library_2.4.iml" />
+    </modules>
+  </component>
+</project>

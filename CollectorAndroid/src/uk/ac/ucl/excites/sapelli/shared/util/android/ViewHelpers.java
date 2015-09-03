@@ -83,7 +83,7 @@ public final class ViewHelpers
 	static public int getDefaultDialogPaddingPx(Activity activity)
 	{
 		TypedValue typedValue = new TypedValue(); 
-		activity.getTheme().resolveAttribute(android.R.attr.dialogPreferredPadding, typedValue, true);
+		activity.getTheme().resolveAttribute(android.R.attr.padding, typedValue, true);
 		return (int) TypedValue.complexToDimensionPixelSize(typedValue.data, activity.getResources().getDisplayMetrics());
 	}
 

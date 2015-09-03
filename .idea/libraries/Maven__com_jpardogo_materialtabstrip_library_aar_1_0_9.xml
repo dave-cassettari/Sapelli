@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: com.jpardogo.materialtabstrip:library:aar:1.0.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/com.jpardogo.materialtabstrip_library_1.0.9/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/com.jpardogo.materialtabstrip_library_1.0.9/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jpardogo/materialtabstrip/library/1.0.9/library-1.0.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/jpardogo/materialtabstrip/library/1.0.9/library-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

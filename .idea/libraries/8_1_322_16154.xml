@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="8.1.322.16154">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Library+DB4O/repo/com/db4o/core-java5/8.1.322.16154/core-java5-8.1.322.16154.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Library+DB4O/repo/com/db4o/core-java5/8.1.322.16154/core-java5-8.1.322.16154-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Library+DB4O/repo/com/db4o/core-java5/8.1.322.16154/core-java5-8.1.322.16154-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

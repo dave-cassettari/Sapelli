@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CollectorAndroid" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CollectorCmdLn" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Dependencies/commons-codec-shaded" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Library" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Library+DB4O" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Library+SQLite4Java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/LibraryAndroid" charset="UTF-8" />
+  </component>
+</project>

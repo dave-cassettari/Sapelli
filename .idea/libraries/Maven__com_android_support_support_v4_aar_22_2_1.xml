@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Maven: com.android.support:support-v4:aar:22.2.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/com.android.support_support-v4_22.2.1/res" />
+      <root url="jar://$PROJECT_DIR$/CollectorAndroid/gen-external-apklibs/com.android.support_support-v4_22.2.1/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/android/support/support-v4/22.2.1/support-v4-22.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/android/support/support-v4/22.2.1/support-v4-22.2.1-sources.jar!/" />
+      <root url="file://$MAVEN_REPOSITORY$/com/android/support/support-v4/22.2.1" />
+    </SOURCES>
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/android/support/support-v4/22.2.1" recursive="false" type="SOURCES" />
+  </library>
+</component>

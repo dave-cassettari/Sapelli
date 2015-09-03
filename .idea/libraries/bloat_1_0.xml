@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bloat-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Library+DB4O/repo/edu/purdue/cs/bloat/1.0/bloat-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
