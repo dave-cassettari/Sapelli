@@ -13,7 +13,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module" module-name="CollectorAndroid" />
     <orderEntry type="module" module-name="Library" />
-    <orderEntry type="module" module-name="Library" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.3" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
