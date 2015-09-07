@@ -45,6 +45,5 @@
     <orderEntry type="library" name="Maven: com.github.japgolly.android:svg-android:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.crashlytics.android:crashlytics:1.1.13" level="project" />
     <orderEntry type="library" name="Maven: com.jpardogo.materialtabstrip:library:aar:1.0.9" level="project" />
-    <orderEntry type="module" module-name="~apklib-com.ipaulpro_afilechooser-library_2.4" />
   </component>
 </module>
