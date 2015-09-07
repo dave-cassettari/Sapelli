@@ -53,6 +53,10 @@
 			<id>crashlytics-repo</id>
 			<url>http://download.crashlytics.com/maven</url>
 		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
 	</repositories>
 	
 	<pluginRepositories>
