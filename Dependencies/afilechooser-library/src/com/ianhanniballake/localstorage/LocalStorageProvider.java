@@ -17,15 +17,12 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.ipaulpro.afilechooser.R;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@android.annotation.TargetApi (19)
 public class LocalStorageProvider extends DocumentsProvider {
 
     public static final String AUTHORITY = "com.ianhanniballake.localstorage.documents";
@@ -49,8 +46,8 @@ public class LocalStorageProvider extends DocumentsProvider {
             Document.COLUMN_LAST_MODIFIED
     };
 
-    @Nullable @Override
-    public Cursor queryRoots(@Nullable final String[] projection) throws FileNotFoundException {
+    @Override
+    public Cursor queryRoots(final String[] projection) throws FileNotFoundException {
         // Create a cursor with either the requested fields, or the default
         // projection if "projection" is null.
         final MatrixCursor result = new MatrixCursor(projection != null ? projection
@@ -73,7 +70,7 @@ public class LocalStorageProvider extends DocumentsProvider {
         return result;
     }
 
-    @Nullable @Override
+    @Override
     public String createDocument(final String parentDocumentId, final String mimeType,
             final String displayName) throws FileNotFoundException {
         File newFile = new File(parentDocumentId, displayName);
@@ -86,9 +83,8 @@ public class LocalStorageProvider extends DocumentsProvider {
         return null;
     }
 
-    @Nullable @Override
-    public AssetFileDescriptor openDocumentThumbnail(final String documentId, @NotNull
-    final Point sizeHint,
+    @Override
+    public AssetFileDescriptor openDocumentThumbnail(final String documentId, final Point sizeHint,
             final CancellationSignal signal) throws FileNotFoundException {
         // Assume documentId points to an image file. Build a thumbnail no
         // larger than twice the sizeHint
@@ -140,9 +136,8 @@ public class LocalStorageProvider extends DocumentsProvider {
                 AssetFileDescriptor.UNKNOWN_LENGTH);
     }
 
-    @Nullable @Override
-    public Cursor queryChildDocuments(final String parentDocumentId, @Nullable
-    final String[] projection,
+    @Override
+    public Cursor queryChildDocuments(final String parentDocumentId, final String[] projection,
             final String sortOrder) throws FileNotFoundException {
         // Create a cursor with either the requested fields, or the default
         // projection if "projection" is null.
@@ -159,9 +154,8 @@ public class LocalStorageProvider extends DocumentsProvider {
         return result;
     }
 
-    @Nullable @Override
-    public Cursor queryDocument(final String documentId, @Nullable
-    final String[] projection)
+    @Override
+    public Cursor queryDocument(final String documentId, final String[] projection)
             throws FileNotFoundException {
         // Create a cursor with either the requested fields, or the default
         // projection if "projection" is null.
@@ -171,9 +165,7 @@ public class LocalStorageProvider extends DocumentsProvider {
         return result;
     }
 
-    private void includeFile(
-       @NotNull final MatrixCursor result, @NotNull
-    final File file)
+    private void includeFile(final MatrixCursor result, final File file)
             throws FileNotFoundException {
         final MatrixCursor.RowBuilder row = result.newRow();
         // These columns are required
@@ -223,8 +215,7 @@ public class LocalStorageProvider extends DocumentsProvider {
     }
 
     @Override
-    public ParcelFileDescriptor openDocument(final String documentId, @NotNull
-    final String mode,
+    public ParcelFileDescriptor openDocument(final String documentId, final String mode,
             final CancellationSignal signal) throws FileNotFoundException {
         File file = new File(documentId);
         final boolean isWrite = (mode.indexOf('w') != -1);

@@ -32,14 +32,10 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.ianhanniballake.localstorage.LocalStorageProvider;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -48,14 +44,11 @@ import java.util.Comparator;
  * @version 2013-12-11
  * @author paulburke (ipaulpro)
  */
-@SuppressWarnings ("HardcodedFileSeparator")
 public class FileUtils {
     private FileUtils() {} //private constructor to enforce Singleton pattern
-
-    /**
-     * TAG for log messages.
-     * */
-    static final String TAG = FileUtils.class.getName ();
+    
+    /** TAG for log messages. */
+    static final String TAG = "FileUtils";
     private static final boolean DEBUG = false; // Set to true to enable logging
 
     public static final String MIME_TYPE_AUDIO = "audio/*";
@@ -67,162 +60,18 @@ public class FileUtils {
     public static final String HIDDEN_PREFIX = ".";
 
     /**
-    * File Filter that includes only files with the specified extensions to pass
-    * @author Kiran Rao
-    *
-    */
-    public static class FileExtensionFilter implements FileFilter{
-      /**
-       * <p>file extension filter</p>
-       */
-     @Nullable private final ArrayList<String> mFilterIncludeExtensions;
-
-     public FileExtensionFilter (@Nullable final ArrayList<String> filterIncludeExtensions){
-        //android.util.Log.d (TAG, "+ FileExtensionFilter");
-        //android.util.Log.v (TAG, "> filterIncludeExtensions = " + filterIncludeExtensions);
-
-        this.mFilterIncludeExtensions = filterIncludeExtensions;
-
-        //android.util.Log.d (TAG, "+ FileExtensionFilter");
-     }
-
-     @Override
-     public boolean accept(@NotNull final File file) {
-        //android.util.Log.d (TAG, "+ accept");
-        //android.util.Log.v (TAG, "> file   = " + file);
-
-       final String fileName = file.getName();
-        final android.net.Uri uri = android.net.Uri.fromFile (file);
-        final boolean passesExtensionsFilter = mFilterIncludeExtensions == null ||
-           mFilterIncludeExtensions.isEmpty () || mFilterIncludeExtensions.contains (
-              getExtension (uri.toString ()));
-       // Return files only (not directories) and skip hidden files
-       final boolean retval = file.isFile() && !fileName.startsWith(HIDDEN_PREFIX) &&
-           passesExtensionsFilter;
-
-        //android.util.Log.v (TAG, "> retval = " + retval);
-        //android.util.Log.d (TAG, "- accept");
-        return retval;
-     }
-
-   }
-   /**
-    * <p>start activity</p>
-    *
-    * @param callingActivity activity opening the chooser
-    * @param title title to display in the chooser
-    * @param requestCode request code used to identify the result
-    * @param mimeType set the mime type to limit the files shown in choosers not capable of
-    *                 extension filtering. this might also reduce the amount of
-    *                 choosers presented
-    * @param filterIncludeExtensions file extensions to display
-    */
-   public static void startChooser (
-      final android.app.Activity callingActivity,
-      @NotNull final CharSequence title,
-      final int requestCode,
-      @NotNull final String mimeType,
-      @NotNull final java.util.ArrayList<String> filterIncludeExtensions) {
-      //android.util.Log.d (TAG, "+ startChooser");
-      //android.util.Log.v (TAG, "> callingActivity         = " + callingActivity);
-      //android.util.Log.v (TAG, "> requestCode             = " + requestCode);
-      //android.util.Log.v (TAG, "> filterIncludeExtensions = " + filterIncludeExtensions);
-
-      // Use the GET_CONTENT intent from the utility class
-      final Intent target = FileUtils.createGetContentIntent();
-
-      target.putStringArrayListExtra (
-         com.ipaulpro.afilechooser.FileChooserActivity.EXTRA_FILTER_INCLUDE_EXTENSIONS,
-         filterIncludeExtensions);
-      target.setType (mimeType);
-
-      android.util.Log.v (TAG, "target intent  >" + target);
-
-      // Create the chooser Intent
-      final Intent intent = Intent.createChooser(target, title);
-
-      android.util.Log.v (TAG, "chooser intent >" + target);
-
-      try {
-         callingActivity.startActivityForResult (intent, requestCode);
-      } catch (@NotNull final android.content.ActivityNotFoundException e) {
-         // The reason for the existence of aFileChooser
-         android.util.Log.e (TAG, "LOG02230:", e);
-      }
-
-
-      //android.util.Log.d (TAG, "- startChooser");
-      return;
-   } // startChooser
-
-   /**
-    * <p>start activity</p>
-    *
-    * @param callingActivity activity opening the chooser
-    * @param title title to display in the chooser
-    * @param requestCode request code used to identify the result
-    * @param mimeType set the mime type to limit the files shown in choosers not capable of
-    *                 extension filtering. this might also reduce the amount of
-    *                 choosers presented
-    * @param baseDirectory base directory to show
-    * @param filterIncludeExtensions file extensions to display
-    */
-   public static void startChooser (
-      final android.app.Activity callingActivity,
-      @NotNull final CharSequence title,
-      final int requestCode,
-      @NotNull final String mimeType,
-      final String baseDirectory,
-      final java.util.ArrayList<String> filterIncludeExtensions) {
-      //android.util.Log.d (TAG, "+ startChooser");
-      //android.util.Log.v (TAG, "> callingActivity         = " + callingActivity);
-      //android.util.Log.v (TAG, "> requestCode             = " + requestCode);
-      //android.util.Log.v (TAG, "> baseDirectory           = " + baseDirectory);
-      //android.util.Log.v (TAG, "> filterIncludeExtensions = " + filterIncludeExtensions);
-
-      // Use the GET_CONTENT intent from the utility class
-      final Intent target = FileUtils.createGetContentIntent();
-
-      target.putStringArrayListExtra (
-         com.ipaulpro.afilechooser.FileChooserActivity.EXTRA_FILTER_INCLUDE_EXTENSIONS,
-         filterIncludeExtensions);
-      target.putExtra (
-         com.ipaulpro.afilechooser.FileChooserActivity.EXTRA_FILTER_BASE_PATH,
-         baseDirectory);
-      target.setType (FileUtils.MIME_TYPE_APP);
-
-      android.util.Log.v (TAG, "target intent  >" + target);
-
-      // Create the chooser Intent
-      final Intent intent = Intent.createChooser(target, title);
-
-      android.util.Log.v (TAG, "chooser intent >" + target);
-
-      try {
-         callingActivity.startActivityForResult (intent, requestCode);
-      } catch (@NotNull final android.content.ActivityNotFoundException e) {
-         // The reason for the existence of aFileChooser
-         android.util.Log.e (TAG, "LOG02230:", e);
-      }
-      //android.util.Log.d (TAG, "- startChooser");
-      return;
-   } // startChooser
-
-    /**
-     *
      * Gets the extension of a file name, like ".png" or ".jpg".
      *
      * @param uri
      * @return Extension including the dot("."); "" if there is no extension;
      *         null if uri was null.
      */
-    @Contract (value = "null -> null; !null -> !null", pure = true)
-    public static String getExtension(@Nullable final String uri) {
+    public static String getExtension(String uri) {
         if (uri == null) {
             return null;
         }
 
-        final int dot = uri.lastIndexOf(".");
+        int dot = uri.lastIndexOf(".");
         if (dot >= 0) {
             return uri.substring(dot);
         } else {
@@ -234,8 +83,7 @@ public class FileUtils {
     /**
      * @return Whether the URI is a local one.
      */
-    @Contract (value = "null -> false", pure = true)
-    public static boolean isLocal(@Nullable final String url) {
+    public static boolean isLocal(String url) {
         if (url != null && !url.startsWith("http://") && !url.startsWith("https://")) {
             return true;
         }
@@ -246,7 +94,7 @@ public class FileUtils {
      * @return True if Uri is a MediaStore Uri.
      * @author paulburke
      */
-    public static boolean isMediaUri(@NotNull final Uri uri) {
+    public static boolean isMediaUri(Uri uri) {
         return "media".equalsIgnoreCase(uri.getAuthority());
     }
 
@@ -256,7 +104,7 @@ public class FileUtils {
      * @param file
      * @return uri
      */
-    public static Uri getUri(@Nullable final File file) {
+    public static Uri getUri(File file) {
         if (file != null) {
             return Uri.fromFile(file);
         }
@@ -269,15 +117,14 @@ public class FileUtils {
      * @param file
      * @return
      */
-    @Nullable
-    public static File getPathWithoutFilename(@Nullable final File file) {
+    public static File getPathWithoutFilename(File file) {
         if (file != null) {
             if (file.isDirectory()) {
                 // no file to be split off. Return everything
                 return file;
             } else {
-                final String filename = file.getName();
-                final String filepath = file.getAbsolutePath();
+                String filename = file.getName();
+                String filepath = file.getAbsolutePath();
 
                 // Construct path without file name.
                 String pathwithoutname = filepath.substring(0,
@@ -294,9 +141,9 @@ public class FileUtils {
     /**
      * @return The MIME type for the given file.
      */
-    public static String getMimeType(@NotNull final File file) {
+    public static String getMimeType(File file) {
 
-        final String extension = getExtension(file.getName());
+        String extension = getExtension(file.getName());
 
         if (extension.length() > 0)
             return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.substring(1));
@@ -307,10 +154,8 @@ public class FileUtils {
     /**
      * @return The MIME type for the give Uri.
      */
-    public static String getMimeType(
-       @NotNull final Context context, @NotNull final
-    Uri uri) {
-        final File file = new File(getPath(context, uri));
+    public static String getMimeType(Context context, Uri uri) {
+        File file = new File(getPath(context, uri));
         return getMimeType(file);
     }
 
@@ -319,7 +164,7 @@ public class FileUtils {
      * @return Whether the Uri authority is {@link LocalStorageProvider}.
      * @author paulburke
      */
-    public static boolean isLocalStorageDocument(@NotNull final Uri uri) {
+    public static boolean isLocalStorageDocument(Uri uri) {
         return LocalStorageProvider.AUTHORITY.equals(uri.getAuthority());
     }
 
@@ -328,7 +173,7 @@ public class FileUtils {
      * @return Whether the Uri authority is ExternalStorageProvider.
      * @author paulburke
      */
-    public static boolean isExternalStorageDocument(@NotNull final Uri uri) {
+    public static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
@@ -337,7 +182,7 @@ public class FileUtils {
      * @return Whether the Uri authority is DownloadsProvider.
      * @author paulburke
      */
-    public static boolean isDownloadsDocument(@NotNull final Uri uri) {
+    public static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
@@ -346,7 +191,7 @@ public class FileUtils {
      * @return Whether the Uri authority is MediaProvider.
      * @author paulburke
      */
-    public static boolean isMediaDocument(@NotNull final Uri uri) {
+    public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
@@ -354,7 +199,7 @@ public class FileUtils {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
-    public static boolean isGooglePhotosUri(@NotNull final Uri uri) {
+    public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
@@ -369,11 +214,8 @@ public class FileUtils {
      * @return The value of the _data column, which is typically a file path.
      * @author paulburke
      */
-    @Nullable public static String getDataColumn(
-       @NotNull final Context context,
-       final Uri uri,
-       final String selection,
-            final String[] selectionArgs) {
+    public static String getDataColumn(Context context, Uri uri, String selection,
+            String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = "_data";
@@ -405,18 +247,14 @@ public class FileUtils {
      * <br>
      * Callers should check whether the path is local before assuming it
      * represents a local file.
-     *
+     * 
      * @param context The context.
      * @param uri The Uri to query.
      * @see #isLocal(String)
      * @see #getFile(Context, Uri)
      * @author paulburke
      */
-    @Nullable
-    @android.annotation.SuppressLint ("NewApi") // Usages of New APIs are surrounded by sufficient conditional checks
-    public static String getPath(
-       @NotNull final Context context,
-       @NotNull final Uri uri) {
+    public static String getPath(final Context context, final Uri uri) {
 
         if (DEBUG)
             Log.d(TAG + " File -",
@@ -507,12 +345,9 @@ public class FileUtils {
      * @see #getPath(Context, Uri)
      * @author paulburke
      */
-    @Nullable
-    public static File getFile(
-       @NotNull final Context context,
-       @Nullable final Uri uri) {
+    public static File getFile(Context context, Uri uri) {
         if (uri != null) {
-            final String path = getPath(context, uri);
+            String path = getPath(context, uri);
             if (path != null && isLocal(path)) {
                 return new File(path);
             }
@@ -527,7 +362,7 @@ public class FileUtils {
      * @return
      * @author paulburke
      */
-    public static String getReadableFileSize(final int size) {
+    public static String getReadableFileSize(int size) {
         final int BYTES_IN_KILOBYTES = 1024;
         final DecimalFormat dec = new DecimalFormat("###.#");
         final String KILOBYTES = " KB";
@@ -560,10 +395,7 @@ public class FileUtils {
      * @return
      * @author paulburke
      */
-    @Nullable
-    public static Bitmap getThumbnail(
-       @NotNull final Context context,
-       @NotNull final File file) {
+    public static Bitmap getThumbnail(Context context, File file) {
         return getThumbnail(context, getUri(file), getMimeType(file));
     }
 
@@ -576,10 +408,7 @@ public class FileUtils {
      * @return
      * @author paulburke
      */
-    @Nullable
-    public static Bitmap getThumbnail(
-       @NotNull final Context context,
-       @NotNull final Uri uri) {
+    public static Bitmap getThumbnail(Context context, Uri uri) {
         return getThumbnail(context, uri, getMimeType(context, uri));
     }
 
@@ -593,11 +422,7 @@ public class FileUtils {
      * @return
      * @author paulburke
      */
-    @Nullable
-    public static Bitmap getThumbnail(
-       @NotNull final Context context,
-       @NotNull final Uri uri,
-       @NotNull final String mimeType) {
+    public static Bitmap getThumbnail(Context context, Uri uri, String mimeType) {
         if (DEBUG)
             Log.d(TAG, "Attempting to get thumbnail");
 
@@ -632,7 +457,7 @@ public class FileUtils {
                                 null);
                     }
                 }
-            } catch (final Exception e) {
+            } catch (Exception e) {
                 if (DEBUG)
                     Log.e(TAG, "getThumbnail", e);
             } finally {
@@ -648,26 +473,37 @@ public class FileUtils {
      *
      * @author paulburke
      */
-    @NotNull public static Comparator<File> sComparator = new Comparator<File>() {
+    public static Comparator<File> sComparator = new Comparator<File>() {
         @Override
-        public int compare(
-           @NotNull final File f1, @NotNull final
-        File f2) {
+        public int compare(File f1, File f2) {
             // Sort alphabetically by lower case, which is much cleaner
             return f1.getName().toLowerCase().compareTo(
                     f2.getName().toLowerCase());
         }
     };
 
+    /**
+     * File (not directories) filter.
+     *
+     * @author paulburke
+     */
+    public static FileFilter sFileFilter = new FileFilter() {
+        @Override
+        public boolean accept(File file) {
+            final String fileName = file.getName();
+            // Return files only (not directories) and skip hidden files
+            return file.isFile() && !fileName.startsWith(HIDDEN_PREFIX);
+        }
+    };
 
     /**
      * Folder (directories) filter.
      *
      * @author paulburke
      */
-    @NotNull public static FileFilter sDirFilter = new FileFilter() {
+    public static FileFilter sDirFilter = new FileFilter() {
         @Override
-        public boolean accept(@NotNull final File file) {
+        public boolean accept(File file) {
             final String fileName = file.getName();
             // Return directories only and skip hidden directories
             return file.isDirectory() && !fileName.startsWith(HIDDEN_PREFIX);
@@ -680,7 +516,7 @@ public class FileUtils {
      * @return The intent for opening a file with Intent.createChooser()
      * @author paulburke
      */
-    @NotNull public static Intent createGetContentIntent() {
+    public static Intent createGetContentIntent() {
         // Implicitly allow the user to select a particular kind of data
         final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         // The MIME data type filter

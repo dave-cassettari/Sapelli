@@ -24,27 +24,19 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.ListView;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Fragment that displays a list of Files in a given path.
- *
+ * 
  * @version 2013-12-11
  * @author paulburke (ipaulpro)
  */
-@SuppressWarnings ("CollectionDeclaredAsConcreteClass")
 public class FileListFragment extends ListFragment implements
         LoaderManager.LoaderCallbacks<List<File>> {
 
-   /**
-    * TAG for log messages.
-    * */
-   static final String TAG = FileListFragment.class.getName ();
     /**
      * Interface to listen for events.
      */
@@ -59,15 +51,8 @@ public class FileListFragment extends ListFragment implements
 
     private static final int LOADER_ID = 0;
 
-    @NotNull
     private FileListAdapter mAdapter;
-   /**
-    * <p>path to display. Not null after onCreate</p>
-    */
-    @NotNull
     private String mPath;
-    @Nullable
-    private ArrayList<String> mFilterIncludeExtensions = new ArrayList<String>();
 
     private Callbacks mListener;
 
@@ -77,67 +62,39 @@ public class FileListFragment extends ListFragment implements
      * @param path The absolute path of the file (directory) to display.
      * @return A new Fragment with the given file path.
      */
-    @NotNull public static FileListFragment newInstance(
-        @NotNull final String path,
-        @Nullable final ArrayList<String> filterIncludeExtensions ) {
-        //android.util.Log.d (TAG, "+ newInstance");
-        //android.util.Log.v (TAG, "> path                     = " + path);
-        //android.util.Log.v (TAG, "> filterIncludeExtensions  = " + filterIncludeExtensions);
-
-        final FileListFragment fragment = new FileListFragment();
-        final Bundle args = new Bundle();
-
-        args.putString(FileChooserActivity.SAVE_INSTANCE_PATH, path);
-        args.putStringArrayList (
-           FileChooserActivity.EXTRA_FILTER_INCLUDE_EXTENSIONS,
-           filterIncludeExtensions);
+    public static FileListFragment newInstance(String path) {
+        FileListFragment fragment = new FileListFragment();
+        Bundle args = new Bundle();
+        args.putString(FileChooserActivity.PATH, path);
         fragment.setArguments(args);
 
-        //android.util.Log.v (TAG, "> fragment                 = " + fragment);
-        //android.util.Log.d (TAG, "+ newInstance");
         return fragment;
     }
 
     @Override
-    public void onAttach(@NotNull final Activity activity) {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
 
         try {
             mListener = (Callbacks) activity;
-        } catch (@NotNull final ClassCastException e) {
-            android.util.Log.e (TAG, "LOG02240:", e);
+        } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement FileListFragment.Callbacks");
         }
     }
 
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        //android.util.Log.d (TAG, "+ onCreate");
-        //android.util.Log.v (TAG, "> savedInstanceState = " + savedInstanceState);
-
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final android.os.Bundle arguments = getArguments ();
-
         mAdapter = new FileListAdapter(getActivity());
-
-        //android.util.Log.v (TAG, "> mAdapter           = " + mAdapter);
-        //android.util.Log.v (TAG, "> arguments          = " + arguments);
-
-        mPath = arguments != null
-           ? arguments.getString (FileChooserActivity.SAVE_INSTANCE_PATH)
-           : Environment.getExternalStorageDirectory().getAbsolutePath();
-        if(arguments != null){
-             mFilterIncludeExtensions = arguments.getStringArrayList (
-                FileChooserActivity.EXTRA_FILTER_INCLUDE_EXTENSIONS);
-        }
-
-       //android.util.Log.d (TAG, "+ onCreate");
+        mPath = getArguments() != null ? getArguments().getString(
+                FileChooserActivity.PATH) : Environment
+                .getExternalStorageDirectory().getAbsolutePath();
     }
 
     @Override
-    public void onActivityCreated(final Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         setEmptyText(getString(R.string.empty_directory));
         setListAdapter(mAdapter);
         setListShown(false);
@@ -148,22 +105,22 @@ public class FileListFragment extends ListFragment implements
     }
 
     @Override
-    public void onListItemClick(@NotNull final ListView l, final View v, final int position, final long id) {
-        final FileListAdapter adapter = (FileListAdapter) l.getAdapter();
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        FileListAdapter adapter = (FileListAdapter) l.getAdapter();
         if (adapter != null) {
-            final File file = adapter.getItem(position);
+            File file = (File) adapter.getItem(position);
             mPath = file.getAbsolutePath();
             mListener.onFileSelected(file);
         }
     }
 
-    @Nullable @Override
-    public Loader<List<File>> onCreateLoader(final int id, final Bundle args) {
-        return new FileLoader(getActivity(), mPath, mFilterIncludeExtensions);
+    @Override
+    public Loader<List<File>> onCreateLoader(int id, Bundle args) {
+        return new FileLoader(getActivity(), mPath);
     }
 
     @Override
-    public void onLoadFinished(final Loader<List<File>> loader, final List<File> data) {
+    public void onLoadFinished(Loader<List<File>> loader, List<File> data) {
         mAdapter.setListItems(data);
 
         if (isResumed())
@@ -173,7 +130,7 @@ public class FileListFragment extends ListFragment implements
     }
 
     @Override
-    public void onLoaderReset(final Loader<List<File>> loader) {
+    public void onLoaderReset(Loader<List<File>> loader) {
         mAdapter.clear();
     }
 }

@@ -30,7 +30,6 @@
     </content>
     <orderEntry type="jdk" jdkName="Maven Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="afilechooser-library" />
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="android-support-v7-appcompat" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: android:android:5.1.1_r2" level="project" />
@@ -45,5 +44,6 @@
     <orderEntry type="library" name="Maven: com.github.japgolly.android:svg-android:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.crashlytics.android:crashlytics:1.1.13" level="project" />
     <orderEntry type="library" name="Maven: com.jpardogo.materialtabstrip:library:aar:1.0.9" level="project" />
+    <orderEntry type="module" module-name="afilechooser-library" />
   </component>
 </module>

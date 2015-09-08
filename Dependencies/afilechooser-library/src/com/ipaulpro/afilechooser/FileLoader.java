@@ -21,8 +21,6 @@ import android.os.FileObserver;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.ipaulpro.afilechooser.utils.FileUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ import java.util.List;
 
 /**
  * Loader that returns a list of Files in a given file path.
- *
+ * 
  * @version 2013-12-11
  * @author paulburke (ipaulpro)
  */
@@ -42,25 +40,20 @@ public class FileLoader extends AsyncTaskLoader<List<File>> {
 			| FileObserver.MOVED_FROM | FileObserver.MOVED_TO
 			| FileObserver.MODIFY | FileObserver.MOVE_SELF;
 
-	@Nullable private FileObserver mFileObserver;
+	private FileObserver mFileObserver;
 
-	@Nullable private List<File> mData;
-	private final String mPath;
-        @Nullable private final ArrayList<String> mFilterIncludeExtensions;
+	private List<File> mData;
+	private String mPath;
 
-	public FileLoader(
-           @NotNull final Context context,
-           final String path,
-           @Nullable final ArrayList<String> filterIncludeExtensions) {
+	public FileLoader(Context context, String path) {
 		super(context);
 		this.mPath = path;
-                this.mFilterIncludeExtensions = filterIncludeExtensions;
 	}
 
-	@NotNull @Override
+	@Override
 	public List<File> loadInBackground() {
 
-        final ArrayList<File> list = new ArrayList<File>();
+        ArrayList<File> list = new ArrayList<File>();
 
         // Current directory File instance
         final File pathDir = new File(mPath);
@@ -71,30 +64,31 @@ public class FileLoader extends AsyncTaskLoader<List<File>> {
             // Sort the folders alphabetically
             Arrays.sort(dirs, FileUtils.sComparator);
             // Add each folder to the File list for the list adapter
-           java.util.Collections.addAll (list, dirs);
+            for (File dir : dirs)
+                list.add(dir);
         }
 
         // List file in this directory with the file filter
-        final File[] files = pathDir.listFiles(
-           new FileUtils.FileExtensionFilter (mFilterIncludeExtensions));
+        final File[] files = pathDir.listFiles(FileUtils.sFileFilter);
         if (files != null) {
             // Sort the files alphabetically
             Arrays.sort(files, FileUtils.sComparator);
             // Add each file to the File list for the list adapter
-           java.util.Collections.addAll (list, files);
+            for (File file : files)
+                list.add(file);
         }
 
         return list;
 	}
 
 	@Override
-	public void deliverResult(final List<File> data) {
+	public void deliverResult(List<File> data) {
 		if (isReset()) {
 			onReleaseResources(data);
 			return;
 		}
 
-		final List<File> oldData = mData;
+		List<File> oldData = mData;
 		mData = data;
 
 		if (isStarted())
@@ -106,23 +100,21 @@ public class FileLoader extends AsyncTaskLoader<List<File>> {
 
 	@Override
 	protected void onStartLoading() {
-		if (mData != null) {
-                   deliverResult (mData);
-                }
+		if (mData != null)
+			deliverResult(mData);
 
 		if (mFileObserver == null) {
 			mFileObserver = new FileObserver(mPath, FILE_OBSERVER_MASK) {
 				@Override
-				public void onEvent(final int event, final String path) {
+				public void onEvent(int event, String path) {
 					onContentChanged();
 				}
 			};
 		}
 		mFileObserver.startWatching();
 
-		if (takeContentChanged() || mData == null) {
-                   forceLoad ();
-                }
+		if (takeContentChanged() || mData == null)
+			forceLoad();
 	}
 
 	@Override
@@ -141,13 +133,13 @@ public class FileLoader extends AsyncTaskLoader<List<File>> {
 	}
 
 	@Override
-	public void onCanceled(final List<File> data) {
+	public void onCanceled(List<File> data) {
 		super.onCanceled(data);
 
 		onReleaseResources(data);
 	}
 
-	protected void onReleaseResources(final List<File> data) {
+	protected void onReleaseResources(List<File> data) {
 
 		if (mFileObserver != null) {
 			mFileObserver.stopWatching();
