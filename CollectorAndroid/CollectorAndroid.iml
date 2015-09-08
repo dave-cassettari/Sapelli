@@ -29,7 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/target/idea-classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/unpacked-libs" />
     </content>
-    <orderEntry type="jdk" jdkName="Maven Android API 22 Platform" jdkType="Android SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="afilechooser-library" />
     <orderEntry type="module" module-name="android-support-v7-appcompat" />
