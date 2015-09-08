@@ -3,16 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CollectorAndroid/CollectorAndroid.iml" filepath="$PROJECT_DIR$/CollectorAndroid/CollectorAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CollectorCmdLn/CollectorCmdLn.iml" filepath="$PROJECT_DIR$/CollectorCmdLn/CollectorCmdLn.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library+DB4O/Library+DB4O.iml" filepath="$PROJECT_DIR$/Library+DB4O/Library+DB4O.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library+SQLite4Java/Library+SQLite4Java.iml" filepath="$PROJECT_DIR$/Library+SQLite4Java/Library+SQLite4Java.iml" />
       <module fileurl="file://$PROJECT_DIR$/SMSRelay/SMSRelay.iml" filepath="$PROJECT_DIR$/SMSRelay/SMSRelay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" filepath="$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" filepath="$PROJECT_DIR$/Dependencies/afilechooser-library/afilechooser-library.iml" group="Dependencies" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/Dependencies/android-support-v7-appcompat/android-support-v7-appcompat.iml" group="Dependencies" />
       <module fileurl="file://$PROJECT_DIR$/Dependencies/commons-codec-shaded/commons-codec-shaded.iml" filepath="$PROJECT_DIR$/Dependencies/commons-codec-shaded/commons-codec-shaded.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" filepath="$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" filepath="$PROJECT_DIR$/Dependencies/materialtabstrip-library/materialtabstrip-library.iml" group="Dependencies" />
     </modules>
   </component>
 </project>

@@ -18,9 +18,6 @@
 
 package uk.ac.ucl.excites.sapelli.shared.util.xml;
 
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
-
 import uk.ac.ucl.excites.sapelli.shared.util.StringUtils;
 
 
@@ -100,7 +97,11 @@ public class XMLUtils
 	 */
 	static public boolean isValidName(String tagName, boolean v11)
 	{
-		return v11 ? XML11Char.isXML11ValidName(tagName) : XMLChar.isValidName(tagName);
+		if (v11)
+		{
+			return XML11Char.isXML11ValidName(tagName);
+		}
+
+		return XMLChar.isValidName(tagName);
 	}
-	
 }

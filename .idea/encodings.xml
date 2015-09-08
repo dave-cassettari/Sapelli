@@ -8,6 +8,8 @@
     <file url="file://$PROJECT_DIR$/Library" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Library+DB4O" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Library+SQLite4Java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Library/src/uk/ac/ucl/excites/sapelli/shared/util/xml/XML11Char.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Library/src/uk/ac/ucl/excites/sapelli/shared/util/xml/XMLChar.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/LibraryAndroid" charset="UTF-8" />
   </component>
 </project>
