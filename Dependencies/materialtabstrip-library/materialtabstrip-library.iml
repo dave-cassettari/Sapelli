@@ -4,6 +4,7 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="LIBRARY_PROJECT" value="true" />
+        <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>
   </component>
@@ -15,7 +16,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.android.support:appcompat-v7:aar:22.2.1" level="project" />
-    <orderEntry type="library" name="Maven: com.android.support:support-v4:aar:22.2.1" level="project" />
+    <orderEntry type="module" module-name="android-support-v7-appcompat" />
+    <orderEntry type="library" name="libs" level="project" />
   </component>
 </module>
