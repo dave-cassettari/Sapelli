@@ -190,14 +190,28 @@ public class AndroidPhotoUI extends PhotoUI<View, CollectorView>
 			{
 				public void run()
 				{
-					if(!handlingClick) // only handle one click at the time
+					if (!handlingClick) // only handle one click at the time
 					{
-						handlingClick = true;
 						if(getCurrentView() == captureLayout)
-						{ // in Capture mode --> there is (currently) only one button here: the one to take a photo
-							cameraController.takePicture(CameraView.this);
+						{
+						 	switch (position)
+							{
+								case 0:
+									cameraController.takePicture(CameraView.this);
 
-							controller.addLogLine("CLICK_CAMERA_TAKE_PICTURE");
+									controller.addLogLine("CLICK_CAMERA_TAKE_PICTURE");
+
+									handlingClick = true;
+									break;
+
+								case 1:
+									cameraController.zoomIn();
+									break;
+
+								case 2:
+									cameraController.zoomOut();
+									break;
+							}
 						}
 						else
 						{ // in Review mode --> there are 2 buttons: approve (pos=0) & discard (pos=1)
@@ -269,7 +283,6 @@ public class AndroidPhotoUI extends PhotoUI<View, CollectorView>
 
 		private class CaptureButtonView extends CameraButtonView
 		{
-
 			public CaptureButtonView(Context context)
 			{
 				super(context);
@@ -278,7 +291,7 @@ public class AndroidPhotoUI extends PhotoUI<View, CollectorView>
 			@Override
 			protected int getNumberOfColumns()
 			{
-				return 1;
+				return 3;
 			}
 
 			/**
@@ -290,14 +303,26 @@ public class AndroidPhotoUI extends PhotoUI<View, CollectorView>
 			protected void addButtons()
 			{
 				// Capture button:
-				Item<?> captureButton = null;
+				Item<?> captureButton;
 				File captureImgFile = controller.getFileStorageProvider().getProjectImageFile(controller.getProject(), field.getCaptureButtonImageRelativePath());
+
 				if(FileHelpers.isReadableFile(captureImgFile))
 					captureButton = new FileImageItem(captureImgFile);
 				else
 					captureButton = new ResourceImageItem(getContext().getResources(), R.drawable.button_photo_svg);
+
 				captureButton.setBackgroundColor(ColourHelpers.ParseColour(field.getBackgroundColor(), Field.DEFAULT_BACKGROUND_COLOR));
 				addButton(captureButton);
+
+				// Zoom buttons:
+				Item<?> buttonZoomIn = new ResourceImageItem(getContext().getResources(), R.drawable.button_zoom_in_svg);
+				Item<?> buttonZoomOut = new ResourceImageItem(getContext().getResources(), R.drawable.button_zoom_out_svg);
+
+				buttonZoomIn.setBackgroundColor(ColourHelpers.ParseColour(field.getBackgroundColor(), Field.DEFAULT_BACKGROUND_COLOR));
+				buttonZoomOut.setBackgroundColor(ColourHelpers.ParseColour(field.getBackgroundColor(), Field.DEFAULT_BACKGROUND_COLOR));
+
+				addButton(buttonZoomIn);
+				addButton(buttonZoomOut);
 			}
 		}
 

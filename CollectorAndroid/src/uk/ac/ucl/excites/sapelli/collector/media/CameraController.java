@@ -47,11 +47,12 @@ import android.view.SurfaceHolder;
  */
 public class CameraController implements SurfaceHolder.Callback
 {
-
+	static private final int ZOOM_STEP = 10;
 	static private final String TAG = "CameraController";
 
 	static private final int NO_CAMERA_FOUND = -1;
 
+	private int zoom= 0;
 	private Camera camera;
 	private int cameraID = NO_CAMERA_FOUND;
 	private PhotoField.FlashMode flashMode = PhotoField.DEFAULT_FLASH_MODE;
@@ -128,6 +129,43 @@ public class CameraController implements SurfaceHolder.Callback
 		}
 	}
 
+	public void zoomIn()
+	{
+		zoom += ZOOM_STEP;
+
+		setZoom(zoom);
+	}
+
+	public void zoomOut()
+	{
+		zoom -= ZOOM_STEP;
+
+		setZoom(zoom);
+	}
+
+	private void setZoom(int level)
+	{
+		if(camera == null) {
+			return;
+		}
+
+		int minZoom = 0;
+		int maxZoom = camera.getParameters().getMaxZoom();
+
+		level = Math.min(maxZoom, Math.max(minZoom, level));
+
+		Camera.Parameters params = camera.getParameters();
+		boolean basic = params.isZoomSupported();
+		boolean smooth = params.isSmoothZoomSupported();
+
+		if (smooth) {
+			camera.startSmoothZoom(level);
+		} else if (basic){
+			params.setZoom(level);
+			camera.setParameters(params);
+		}
+	}
+
 	public void close()
 	{
 		if(camera != null)
@@ -147,6 +185,14 @@ public class CameraController implements SurfaceHolder.Callback
 			try
 			{
 				camera = Camera.open(cameraID);
+
+				camera.setZoomChangeListener(new Camera.OnZoomChangeListener() {
+					@Override
+					public void onZoomChange(int zoomValue, boolean stopped, Camera camera)
+					{
+
+					}
+				});
 			}
 			catch(Exception e)
 			{
