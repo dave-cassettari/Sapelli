@@ -129,7 +129,8 @@ public class TextToVoice implements TextToSpeech.OnInitListener
 	
 	private int synthesizeToFile(String textToSynthesize, String filepath)
 	{
-		if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP /* = 21 */)
+        // NOTE: on API 18 the previous condition doesn't seem to work (tries to use API 21)
+		if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 			return synthesizeToFileLollipop(textToSynthesize, filepath);
 		else
 			return synthesizeToFilePreLollipop(textToSynthesize, filepath);
@@ -138,14 +139,22 @@ public class TextToVoice implements TextToSpeech.OnInitListener
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private int synthesizeToFileLollipop(String textToSynthesize, String filepath)
 	{
-		return tts.synthesizeToFile(textToSynthesize, null, new File(filepath), textToSynthesize); // Use text to be synthesised as "utterance ID" for job
+        // Set params of synthesis job by creating a hash table:
+        HashMap<String, String> params = new HashMap<>();
+        // use text to be synthesised as "utterance ID" for job:
+        params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, textToSynthesize);
+
+        // Start synthesis job:
+        return tts.synthesizeToFile(textToSynthesize, params, filepath);
+
+		//return tts.synthesizeToFile(textToSynthesize, null, new File(filepath), textToSynthesize); // Use text to be synthesised as "utterance ID" for job
 	}
 
 	@SuppressWarnings("deprecation")
 	private int synthesizeToFilePreLollipop(String textToSynthesize, String filepath)
 	{
 		// Set params of synthesis job by creating a hash table:
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, String> params = new HashMap<>();
 		// use text to be synthesised as "utterance ID" for job:
 		params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, textToSynthesize);
 		

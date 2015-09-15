@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Icons by VisualPharm (visualpharm.com) & Transport for London -->
+<SapelliCollectorProject id="1234" defaultLanguage="en-GB" name="Transport Demo" version="2.3">
+  <Configuration>
+    <Logging enabled="true" />
+  </Configuration>
+  <Form id="Survey">
+    <Choice id="TransportMode" cols="1">
+      <Choice img="private.svg">
+        <Choice img="motorised.svg" rows="3">
+          <Choice img="car.svg" value="Car"/>
+          <Choice img="motorcycle.svg" value="Motorcycle"/>
+          <Choice img="scooter.svg" value="Scooter"/>
+        </Choice>
+        <Choice img="unmotorised.svg" rows="3">
+          <Choice img="bicycle.svg" value="Bicycle"/>
+          <Choice img="skateboard.svg" value="Skateboard"/>
+          <Choice img="walking.svg" value="Walking" jump="Position"/>
+        </Choice>
+      </Choice>
+      <Choice img="public.svg" cols="2">
+        <Choice img="bus.svg" value="Bus"/>
+        <Choice img="tram.svg" value="Tram"/>
+        <Choice img="subway.svg" value="Subway"/>
+        <Choice img="train.svg" value="Train"/>
+      </Choice>
+    </Choice>
+    <Photo id="Picture" max="1" optional="true"/>
+    <Location id="Position" type="GPS" timeout="120" optional="true"/>
+    <Choice id="Confirmation" noColumn="true" showCancel="false" showForward="false">
+      <Choice img="ok.svg" alt="Confirm" showBack="false" showCancel="false" showForward="false">
+        <Choice img="restart.svg" alt="Another" jump="_SAVE+LOOPFORM"/>
+        <Choice img="exit.svg" alt="Exit" jump="_SAVE+EXITAPP"/>
+      </Choice>
+      <Choice img="cancel.svg" alt="Discard" jump="_LOOPFORM"/>
+    </Choice>
+  </Form>
+</SapelliCollectorProject>

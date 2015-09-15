@@ -436,11 +436,7 @@ public class Form implements WarningKeeper
 	{
 		if(audioFeedbackStr == null)
 			return; // default Audio Feedback will be used
-		try
-		{
-			this.audioFeedback = AudioFeedback.valueOf(audioFeedbackStr.toUpperCase());
-		}
-		catch(IllegalArgumentException ignore) {}
+		this.audioFeedback = AudioFeedback.valueOf(audioFeedbackStr.toUpperCase());
 	}
 
 	/**

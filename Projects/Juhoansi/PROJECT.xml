@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SapelliCollectorProject id="1235" defaultLanguage="en-GB" name="Juhoansi" version="1.10">
+  <Configuration>
+    <Logging enabled="true" />
+  </Configuration>
+  <Form id="Survey" audioFeedback="sequential">
+    <Choice id="Data" cols="1">
+      <Choice img="Poaching.svg" answerDescription="Poaching.mp3" questionDescription="Poaching.mp3" caption="Poaching" rows="3">
+        <Choice img="Poaching_HorseTracks.svg" answerDescription="Poaching_HorseTracks.mp3" questionDescription="Poaching_HorseTracks.mp3" caption="Horse Tracks" value="Poaching, Horse Tracks" />
+        <Choice img="Poaching_BulletCartridges.svg" answerDescription="Poaching_BulletCartridges.mp3" questionDescription="Poaching_BulletCartridges.mp3" caption="Bullet Cartridges" value="Poaching, Bullet Cartridges" />
+        <Choice img="Poaching_ActualPoachers.svg" answerDescription="Poaching_ActualPoachers.mp3" questionDescription="Poaching_ActualPoachers.mp3" caption="Actual Poachers" value="Poaching, Actual Poachers" />
+      </Choice>
+      <Choice img="Invasion.svg" answerDescription="Invasion.mp3" questionDescription="Invasion.mp3" caption="Invasion" rows="2">
+        <Choice img="Invasion_Cow.svg" answerDescription="Invasion_Cow.mp3" questionDescription="Invasion_Cow.mp3" caption="Cow" value="Invasion, Cow" />
+        <Choice img="Invasion_CutFence.svg" answerDescription="Invasion_CutFence.mp3" questionDescription="Invasion_CutFence.mp3" caption="Cut Fence" value="Invasion, Cut Fence" />
+      </Choice>
+    </Choice>
+    <Photo id="Picture" optional="false" />
+    <Choice id="Control" noColumn="true" showCancel="false" showForward="false">
+      <Choice img="Control_OK.svg" answerDescription="Control_OK.mp3" questionDescription="Control_OK.mp3" caption="OK" showBack="false" showCancel="false" showForward="false">
+        <Choice img="Control_Restart.svg" answerDescription="Control_Restart.mp3" questionDescription="Control_Restart.mp3" caption="Restart" jump="_SAVE+LOOPFORM"/>
+        <Choice img="Control_Send.svg" answerDescription="Control_Send.mp3" questionDescription="Control_Send.mp3" caption="Send" jump="_SAVE+EXITAPP"/>
+      </Choice>
+      <Choice img="Control_Cancel.svg" answerDescription="Control_Cancel.mp3" questionDescription="Control_Cancel.mp3" caption="Cancel" jump="_LOOPFORM"/>
+    </Choice>
+  </Form>
+</SapelliCollectorProject>

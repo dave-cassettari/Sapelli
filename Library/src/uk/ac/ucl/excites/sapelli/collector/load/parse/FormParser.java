@@ -306,8 +306,6 @@ public class FormParser extends SubtreeParser<ProjectParser>
 			try
 			{
 				currentForm.setAudioFeedback(attributes.getString(ATTRIBUTE_FORM_AUDIO_FEEDBACK, Form.DEFAULT_AUDIO_FEEDBACK.name(), true, false));
-				if(currentForm.getAudioFeedback() != null && currentForm.getAudioFeedback() != AudioFeedback.NONE)
-					addWarning("Older Android devices may require SpeechSynthesis Data Installer to be installed for text-to-speech to work."); // TODO move this to synthesis?
 			}
 			catch(IllegalArgumentException iae)
 			{
@@ -929,6 +927,9 @@ public class FormParser extends SubtreeParser<ProjectParser>
 			{	// Audio file will have to be generated:
 				if(textOrPath != null || fallbackText != null)
 				{
+					if(currentForm.getAudioFeedback() != null && currentForm.getAudioFeedback() != AudioFeedback.NONE)
+						addWarning("Older Android devices may require SpeechSynthesis Data Installer to be installed for text-to-speech to work.");
+
 					// Playback of audio generated from text (TTS):
 					String languageCode = currentForm.getDefaultLanguage();
 					String toPronounce = textOrPath != null ? textOrPath : fallbackText;
@@ -1108,13 +1109,13 @@ public class FormParser extends SubtreeParser<ProjectParser>
 			}
 			
 			// Generate (audio) descriptions for missing Control tags:
-			for(Control.Type type : Control.Type.values())
-				if(!parsedControls[type.ordinal()])
-					setDescription(	currentForm.getControl(type).description,
-									type.name(),
-									Control.GetDefaultDescriptionText(type),
-									null,
-									null);
+//			for(Control.Type type : Control.Type.values())
+//				if(!parsedControls[type.ordinal()])
+//					setDescription(	currentForm.getControl(type).description,
+//									type.name(),
+//									Control.GetDefaultDescriptionText(type),
+//									null,
+//									null);
 
 			// Deactivate this subtree parser:
 			deactivate(); //will call reset() (+ warnings will be copied to owner)
